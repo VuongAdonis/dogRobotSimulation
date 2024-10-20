@@ -1,0 +1,27 @@
+[0.011s] Invoking command in '/home/DATA/simulation/robotDog/build/robot_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/DATA/DogRobot/ros2_ws/install/my_launch_package:/home/DATA/DogRobot/ros2_ws/install/gamepad_node:/home/DATA/DogRobot/ros2_ws/install/add_integers:/home/DATA/DogRobot/ros2_ws/install/controller:/home/DATA/DogRobot/ros2_ws/install/can_node:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/DATA/simulation/robotDog/build/robot_pkg -- -j8 -l8
+[0.053s] Invoked command in '/home/DATA/simulation/robotDog/build/robot_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/DATA/DogRobot/ros2_ws/install/my_launch_package:/home/DATA/DogRobot/ros2_ws/install/gamepad_node:/home/DATA/DogRobot/ros2_ws/install/add_integers:/home/DATA/DogRobot/ros2_ws/install/controller:/home/DATA/DogRobot/ros2_ws/install/can_node:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/DATA/simulation/robotDog/build/robot_pkg -- -j8 -l8
+[0.083s] Invoking command in '/home/DATA/simulation/robotDog/build/robot_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/DATA/DogRobot/ros2_ws/install/my_launch_package:/home/DATA/DogRobot/ros2_ws/install/gamepad_node:/home/DATA/DogRobot/ros2_ws/install/add_integers:/home/DATA/DogRobot/ros2_ws/install/controller:/home/DATA/DogRobot/ros2_ws/install/can_node:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/DATA/simulation/robotDog/build/robot_pkg
+[0.091s] -- Install configuration: ""
+[0.091s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/launch
+[0.091s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/launch/robot_model.launch.py
+[0.091s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/model
+[0.091s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/model/robot.gazebo
+[0.091s] -- Installing: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/model/robot.xacro
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/parameters
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/parameters/bridge_parameters.yaml
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/ament_index/resource_index/package_run_dependencies/robot_pkg
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/ament_index/resource_index/parent_prefix_path/robot_pkg
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/ament_prefix_path.sh
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/ament_prefix_path.dsv
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/path.sh
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/path.dsv
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.bash
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.sh
+[0.092s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.zsh
+[0.093s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.dsv
+[0.093s] -- Installing: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/package.dsv
+[0.093s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/ament_index/resource_index/packages/robot_pkg
+[0.093s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/cmake/robot_pkgConfig.cmake
+[0.093s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/cmake/robot_pkgConfig-version.cmake
+[0.093s] -- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/package.xml
+[0.094s] Invoked command in '/home/DATA/simulation/robotDog/build/robot_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/DATA/DogRobot/ros2_ws/install/my_launch_package:/home/DATA/DogRobot/ros2_ws/install/gamepad_node:/home/DATA/DogRobot/ros2_ws/install/add_integers:/home/DATA/DogRobot/ros2_ws/install/controller:/home/DATA/DogRobot/ros2_ws/install/can_node:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/DATA/simulation/robotDog/build/robot_pkg

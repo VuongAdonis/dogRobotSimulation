@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<robot name="quadruped_9g">
+    <!-- Các thuộc tính vật liệu và ma sát -->
+    <gazebo reference="base_link">
+        <mu1>0.5</mu1>  <!-- Ma sát tĩnh -->
+        <mu2>0.5</mu2>  <!-- Ma sát động -->
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Shoulder -->
+    <gazebo reference="shoulder_link_lf">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="shoulder_link_rf">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="shoulder_link_lb">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="shoulder_link_rb">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!-- Thigh -->
+    <gazebo reference="thigh_link_lf">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="thigh_link_rf">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="thigh_link_lb">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="thigh_link_rb">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <!-- Shank -->
+    <gazebo reference="shank_link_lf">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="shank_link_rf">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="shank_link_lb">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="shank_link_rb">
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <!-- Feet -->
+    <gazebo reference="feet_link_lf">
+        <mu1>0.3</mu1>
+        <mu2>0.3</mu2>
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="feet_link_rf">
+        <mu1>0.3</mu1>
+        <mu2>0.3</mu2>
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="feet_link_lb">
+        <mu1>0.3</mu1>
+        <mu2>0.3</mu2>
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="feet_link_rb">
+        <mu1>0.3</mu1>
+        <mu2>0.3</mu2>
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Plugin cho hệ thống lái -->
+    <!-- <gazebo>
+        <plugin filename="libJointController.so" name="joint_controller">
+            <joint>joint_1</joint>
+            <pid>
+                <p>100.0</p>
+                <i>1.0</i>
+                <d>10.0</d>
+            </pid>
+            <topic>cmd_joint_1</topic>
+        </plugin>
+    </gazebo> -->
+</robot>
