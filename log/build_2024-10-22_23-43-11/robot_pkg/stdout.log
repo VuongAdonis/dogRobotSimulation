@@ -1,0 +1,23 @@
+-- Install configuration: ""
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/launch
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/launch/robot_model.launch.py
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/model
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/model/robot.gazebo
+-- Installing: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/model/robot.xacro
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/parameters
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/parameters/bridge_parameters.yaml
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/ament_index/resource_index/package_run_dependencies/robot_pkg
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/ament_index/resource_index/parent_prefix_path/robot_pkg
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/ament_prefix_path.sh
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/path.sh
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/environment/path.dsv
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.bash
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.sh
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.zsh
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/local_setup.dsv
+-- Installing: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/package.dsv
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/ament_index/resource_index/packages/robot_pkg
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/cmake/robot_pkgConfig.cmake
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/cmake/robot_pkgConfig-version.cmake
+-- Up-to-date: /home/DATA/simulation/robotDog/install/robot_pkg/share/robot_pkg/package.xml

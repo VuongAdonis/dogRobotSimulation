@@ -3,15 +3,15 @@
 <robot name="quadruped_9g" xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="pi" value="3.1415" />
 
-    <xacro:property name="shoul_len" value="0.35" />
-    <xacro:property name="thigh_len" value="0.5" />
-    <xacro:property name="shank_len" value="0.5" />
+    <xacro:property name="shoul_len" value="1.6112" />
+    <xacro:property name="thigh_len" value="2" />
+    <xacro:property name="shank_len" value="2" />
     <xacro:property name="link_radius" value="0.025"/>
-    <xacro:property name="feet_radius" value="0.025"/>
+    <xacro:property name="feet_radius" value="0.01"/>
     
-    <xacro:property name="body_len" value="1" />
-    <xacro:property name="body_width" value="0.5" />
-    <xacro:property name="body_height" value="0.2" />
+    <xacro:property name="body_len" value="3.74" />
+    <xacro:property name="body_width" value="3.2224" />
+    <xacro:property name="body_height" value="0.5" />
 
     <xacro:property name="z_body" value="${thigh_len + shank_len}" />
 
@@ -76,7 +76,7 @@
             </visual>
             <xacro:default_inertial mass="2"/>
         </link>
-        <joint name="shoulder_joint_${suffix}" type="fixed">
+        <joint name="shoulder_joint_${suffix}" type="revolute">
             <axis xyz="1 0 0"/>
             <limit effort="1000.0" lower="${-0.5*pi}" upper="${0.5*pi}" velocity="0.5"/>
             <parent link="body_link"/>
@@ -95,7 +95,7 @@
             </visual>
             <xacro:default_inertial mass="2"/>
         </link>
-        <joint name="elbow_joint_${suffix}" type="fixed">
+        <joint name="elbow_joint_${suffix}" type="revolute">
             <axis xyz="0 1 0"/>
             <limit effort="1000.0" lower="${-0.5*pi}" upper="${0.5*pi}" velocity="0.5"/>
             <parent link="shoulder_link_${suffix}"/>
@@ -113,7 +113,7 @@
             </visual>
             <xacro:default_inertial mass="2"/>
         </link>
-        <joint name="wrist_joint_${suffix}" type="fixed">
+        <joint name="wrist_joint_${suffix}" type="revolute">
             <axis xyz="0 1 0"/>
             <limit effort="1000.0" lower="${-0.5*pi}" upper="0.0" velocity="0.5"/>
             <parent link="thigh_link_${suffix}"/>
@@ -122,23 +122,23 @@
         </joint>
         
         <!-- ############################## -->
-        <!-- <link name="feet_link_${suffix}">
+        <link name="feet_link_${suffix}">
             <visual>
                 <geometry>
                     <sphere radius="${feet_radius}"/>
                 </geometry>
-                <origin rpy="0 0 0" xyz="0 0 ${0.75/2}"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <material name="white"/>
             </visual>
             <xacro:default_inertial mass="0.2"/>
         </link>
-        <joint name="ankle_joint_${suffix}" type="revolute">
+        <joint name="ankle_joint_${suffix}" type="fixed">
             <axis xyz="0 1 0"/>
             <limit effort="1000.0" lower="${-0.5*pi}" upper="${0.5*pi}" velocity="0.5"/>
             <parent link="shank_link_${suffix}"/>
             <child link="feet_link_${suffix}"/>
-            <origin xyz="0 0 ${-shank_len + 0.75/2}"/>
-        </joint> -->
+            <origin xyz="0 0 0"/>
+        </joint>
 
     </xacro:macro>
 
@@ -146,5 +146,216 @@
     <xacro:leg suffix="rf" front="1" left="-1" />
     <xacro:leg suffix="lb" front="-1" left="1" />
     <xacro:leg suffix="rb" front="-1" left="-1" />
+
+    <!-- ROS control plugin -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>robotDog_controller</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <!-- IMU sesnsor -->
+    <gazebo reference="base_link">
+        <gravity>true</gravity>
+        <sensor name="imu_sensor" type="imu">
+            <always_on>true</always_on>
+            <update_rate>100</update_rate>
+            <visualizae>true</visualizae>
+            <topic>__default_topic__</topic>
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <topicName>robotDog_imu/base_link_orientation</topicName>
+                <bodyName>imu_link</bodyName>
+                <updateRateHz>15.0</updateRateHz>
+                <gaussianNoise>0.0</gaussianNoise>
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>
+                <frameName>base_link</frameName>
+                <initialOrientationAsReference>false</initialOrientationAsReference>
+            </plugin>
+            <pose>0 0 0 0 0 0</pose>
+        </sensor>
+    </gazebo>
+
+    <!-- Joint state publisher plugin -->
+    <gazebo>
+        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+            <robotNamespace>robotDog_gazebo</robotNamespace>
+            <jointName> shoulder_joint_lf, elbow_joint_lf, wrist_joint_lf,
+                        shoulder_joint_rf, elbow_joint_rf, wrist_joint_rf,
+                        shoulder_joint_lb, elbow_joint_lb, wrist_joint_lb,
+                        shoulder_joint_rb, elbow_joint_rb, wrist_joint_rb
+            </jointName>
+            <updateRate>100</updateRate>
+        </plugin>
+    </gazebo>
+
+    <!-- Transmission -->
+    <transmission name="trans1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="shoulder_joint_lf">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="elbow_joint_lf">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="wrist_joint_lf">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="shoulder_joint_rf">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="elbow_joint_rf">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="wrist_joint_rf">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans7">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="shoulder_joint_lb">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor7">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans8">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="elbow_joint_lb">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor8">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans9">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="wrist_joint_lb">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor9">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans10">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="shoulder_joint_rb">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor10">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans11">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="elbow_joint_rb">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor11">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans12">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="wrist_joint_rb">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor12">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>5</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- Feet_lf friction -->
+    <gazebo reference="feet_link_lf">
+        <mu1>1.0</mu1>
+        <mu2>1.0</mu2>
+        <minDepth>0.0002</minDepth>
+        <kp value="1000000.0"/>
+        <kd value="100.0"/>
+    </gazebo>
+
+    <!-- Feet_rf friction -->
+    <gazebo reference="feet_link_rf">
+        <mu1>1.0</mu1>
+        <mu2>1.0</mu2>
+        <minDepth>0.0002</minDepth>
+        <kp value="1000000.0"/>
+        <kd value="100.0"/>
+    </gazebo>
+
+    <!-- Feet_lb friction -->
+    <gazebo reference="feet_link_lb">
+        <mu1>1.0</mu1>
+        <mu2>1.0</mu2>
+        <minDepth>0.0002</minDepth>
+        <kp value="1000000.0"/>
+        <kd value="100.0"/>
+    </gazebo>
+
+    <!-- Feet_rb friction -->
+    <gazebo reference="feet_link_rb">
+        <mu1>1.0</mu1>
+        <mu2>1.0</mu2>
+        <minDepth>0.0002</minDepth>
+        <kp value="1000000.0"/>
+        <kd value="100.0"/>
+    </gazebo>
 
 </robot>
